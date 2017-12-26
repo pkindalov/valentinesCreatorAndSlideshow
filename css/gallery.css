@@ -1,0 +1,235 @@
+body{
+    font-family: Roboto, cursive;
+}
+
+
+.mainBackground2{
+    background: url("../graphics/heartBackg2.png") repeat;
+}
+
+.mainBackground3{
+    background: url("../graphics/heartBackg3.png") repeat;
+}
+
+.mainBackground4{
+    background: url("../graphics/heartBackg4.png") repeat;
+}
+
+.mainBackground5{
+    background: url("../graphics/heartBackg5.png") repeat;
+}
+
+.mainBackground6{
+    background: url("../graphics/heartBackg6.png") repeat;
+}
+
+.mainBackground7{
+    background: url("../graphics/heartBackg7.png") repeat;
+}
+
+.mainBackground8{
+    background: url("../graphics/heartBackg8.png") repeat;
+}
+
+.mainBackground9{
+    background: url("../graphics/heartBackg9.png") repeat;
+}
+
+.mainBackground10{
+    background: url("../graphics/heartBackg10.png");
+}
+
+.main {
+    background: url('../graphics/heartBackg.png') repeat;
+}
+
+.main, .mainBackground2, .mainBackground3, .mainBackground4, .mainBackground5, .mainBackground6, .mainBackground7, .mainBackground8, .mainBackground9, .mainBackground10{
+    filter: alpha(opacity=40);
+    opacity: 0.5;
+    height: 1000px;
+    width: 1000px;
+}
+
+.container {
+    color: snow;
+    position: absolute;
+    margin: 0 auto;
+    margin-top: -900px;
+}
+
+.heart {
+    background: url('../graphics/The-heart.png');
+}
+
+.heart2{
+    background: url('../graphics/heartTheme2png.png');
+}
+
+.heart3{
+    background: url("../graphics/heartTheme3.png");
+}
+
+.heart4{
+    background: url("../graphics/heartTheme4.png");
+}
+
+.heart5{
+    background: url("../graphics/heartTheme5.png");
+}
+
+.heart6{
+    background: url("../graphics/heartTheme6.png");
+}
+
+.heart7{
+    background: url("../graphics/heartTheme7.png");
+}
+
+.heart8{
+    background: url("../graphics/heartTheme8.png");
+}
+
+.heart, .heart2, .heart3, .heart4, .heart5, .heart6, .heart7, .heart8{
+margin: 0 auto;
+background-size: contain;
+background-repeat: no-repeat;
+width: 1000px;
+height: 1000px;
+}
+
+.heart > .musicControls{
+    padding-top: 40px;
+}
+
+.heart2, .heart3, .heart4, .heart5, .heart6, .heart7, .heart8{
+    margin-top: 50px;
+}
+
+
+.imageBorder {
+    width: 400px;
+    height: 300px;
+    position: absolute;
+    margin-top: -300px;
+    margin-left: 135px;
+}
+
+.imageBorder,
+img {
+    width: 400px;
+    height: 300px;
+    border-radius: 5px;
+}
+
+
+.poemPlace{
+    margin-left: 560px;
+    margin-top: -40px;
+    padding-left: 10px;
+    height: 400px;
+    width: 300px;
+    line-height: 170%;
+    color: snow;
+}
+
+.buttons {
+    padding-left: 220px;
+    margin-top: 20px;
+    /* margin-left: 480px;
+    margin-top: -250px; */
+}
+
+.autoplaySettings{
+    margin: 0 auto;
+}
+
+.autoplaySettings, .instructionButtons{
+    color: black;
+}
+
+.musicPlayer{
+    margin-top: 130px;
+    margin-left: 135px;
+}
+
+.bottomLineButton{
+    margin-top: 10px;
+    margin-left: 71px;
+}
+
+.bottomLineButton2{
+    margin-top: 10px;
+    margin-left: 89px;
+}
+
+.stats{
+   margin-top: 50px;
+   margin-left: 420px;
+}
+
+
+.img-zoom {
+    border: 10px solid snow;
+    width: 730px;
+    height: 600px;
+    margin: 0 auto;
+    margin-top: -100px;
+    -webkit-transition: all .2s ease-in-out;
+    -moz-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
+    -ms-transition: all .2s ease-in-out;
+}
+
+.transition {
+    -webkit-transform: scale(2);
+    -moz-transform: scale(2);
+    -o-transform: scale(2);
+    transform: scale(2);
+}
+
+
+.instructions{
+    border: 5px solid orange;
+    border-radius: 5px;
+    background-color: orangered;
+    width: 400px;
+    height: 800px;
+    margin-left: 1000px;
+
+}
+
+
+.moreInstructions{
+    margin-top: 20px;
+    margin-bottom: 30px;
+    margin-left: 200px;
+}
+
+.instructions, .moreInstructions{
+    border: 5px solid orange;
+    border-radius: 5px;
+    background-color: orangered;
+    padding-right: 2px;
+    padding-left: 5px;
+}
+
+.instructionButtons, .instructionButtonsNoDefaultTheme{
+    margin-left: 1100px;
+    margin-top: -1040px;
+    margin-bottom: 50px;
+    color: #000;
+}
+
+.instructionButtonsNoDefaultTheme{
+    margin-top:  -1090px;
+}
+
+
+.important{
+    text-transform: uppercase;
+    text-decoration: underline;
+}
+
+.question{
+    color: yellowgreen;
+}

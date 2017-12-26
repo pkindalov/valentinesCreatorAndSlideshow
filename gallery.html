@@ -1,0 +1,158 @@
+<html lang="en">
+
+<head>
+    <title>Специален подарък :) </title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="scripts/jquery-3.2.1.min.js"></script>
+    <script src="scripts/gallery.js"></script>
+    <script src="scripts/pics.js"></script>
+    <script src="poems/poems.js"></script>
+    <script src="scripts/music.js"></script>
+    <link rel="shortcut icon" href="graphics/cardiogram.png" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/gallery.css" />
+</head>
+
+<body>
+
+    <div class="main"></div>
+
+    <div class="container">
+        <div class="row">
+
+            <div class="autoplaySettings">
+                <!--Автоматично сменяне на снимките със случаен подбор.-->
+                <a class="btn btn-outline-warning" name="autoplay">Авт.сменяне на снимките(Случаен) - ИЗКЛЮЧИ.</a>
+                <!--Автоматично сменяне на снимките последователно.-->
+                <a class="btn btn-warning" name="autoplayOrdered">Авт.сменяне на снимките(Подредба) - ВКЛЮЧИ</a>
+            </div>
+
+
+            <div class="col-lg">
+                <div class="heart">
+                    <div class="musicControls"></div>
+                    <div class="poemPlace"></div>
+                    <div class="imageBorder"></div>
+                    <div class="buttons">
+                        <a class="btn btn-warning" name="prev">Назад</a>
+                        <a class="btn btn-warning" name="random">Случайна</a>
+                        <a class="btn btn-warning" name="next">Напред</a>
+                        <span name="count"></span><br />
+                        <a class="btn btn-outline-warning bottomLineButton" name="stopPoems">Непоказвай стихчета</a><br />
+                        <a class="btn btn-outline-warning bottomLineButton2" name="bigImage">Уголеми снимките</a>
+                    </div>
+                    <div class="stats"></div>
+                </div>
+
+                <div id="instrButtons" class="instructionButtons">
+                    <a class="btn btn-warning" name="showInstructions">Покажи Инструкции</a>
+                </div>
+                <div class="instructions">
+                    <p>
+                        Здравейте. Благодаря ви, че използвате моето приложение. Надявам се да ви хареса.
+                    </p>
+
+                    <p>
+                        Има няколко неща, които е добре да знаете:<br />
+                    </p>
+
+                    <p>
+                        <span class="question">Как да си добавите други снимки или да изтриете текущи ?</span><br />
+                    </p>
+
+                    <p>
+                    Можете да добавяте други снимки или да изтривате такива от папка pictures. <span class="important">Важното</span>  тук е, след като евентуално сте добавили/изтрили после <span class="important">да стартирате файла run.bat</span> , който е в текущата директория на проекта.<span class="important">Това се прави еднократно.</span>След това може да си стартирате приложението директно от gallery.html, който трябва да отворите с <span class="important">Браузър.</span><br />
+
+                    </p>
+
+                    <p>
+                        <span class="question">Как да си добавите стихотворение ?</span><br />
+                    </p>
+
+                    <p>
+
+                        Добавянето или премахване на стихотворение става по малко по-различен начин от добавянето на снимка. За целта трябва да отворите файл poems.js от директория poems и след това за да <span class="important">добавите, трябва след последният стих да добавите - ","(запетайка) и след това на нов ред между кавички да поставите стихотворението.</span>
+                    </p>
+
+                    <p>
+                        Oще инструкции може да прочетете от <span class="important"><a class="btn btn-success" name="moreInstructions">тук</a> </span>
+                    </p>
+
+                    <!--<p>-->
+                        <!--<span class="question">- Как да си добавите музика ?</span>-->
+                    <!--</p>-->
+
+                    <!--<p>-->
+                        <!--Добавянето на музика става по абсолютно същият начин както добавянето на снимка, като <span class="important">единствената разлика е, че песента трябва да се добави в папка music и да бъде в mp3 формат</span>-->
+                    <!--</p>-->
+
+
+                </div>
+                <div class="moreInstructions">
+                    <p>
+                    <span class="question">Как да си добавите музика ?</span>
+                    </p>
+
+                    <p>
+                    Добавянето на музика става по абсолютно същият начин както добавянето на снимка, като <span class="important">единствената разлика е, че песента трябва да се добави в папка music и да бъде в mp3 формат</span>
+                    </p>
+
+                    <p>
+                        <span class="question">Какво означава автоматично сменяне на снимките(Случаен) ?</span>
+                    </p>
+                    <p>
+                        Това означава, че в момента приложението автоматично сменя снимките като избира снимка на <span class="important">случаен принцип. Това поведение е включено по подразбиране когато стартира приложението</span>
+                    </p>
+
+                    <p>
+                        <span class="question">Какво означава автоматично сменяне на снимките(Подредба) ?</span>
+                    </p>
+
+                    <p>
+                        Това означава, че снимките се показват <span class="important">подред - 1, 2, 3, 4...</span>
+                    </p>
+
+                    <p>
+                        <span class="question">Може ли едновременно да работят и двата режима ?</span>
+                    </p>
+
+                    <p>
+                        Тази възможност не е налична. В момента може само една от двете да работи, <span class="important">не и двете едновременно.</span>
+                    </p>
+
+                    <p>
+                        <span class="question">Как точно работи функционалността непоказвай стихотворения?</span>
+                    </p>
+
+                    <p>
+                        В случай, че ви дразнят или не ви харесват стихотворенията тази опция ви позволява да ги скриете да не се виждат.
+                        <span class="important">важно е да се отбележи, че тази опция стои включена, докато не я включите отново и по време на изпълнение на приложението. Ако го рестартирате отново ще е включена.</span>. Друг вариант е да включите функционалността уголеми снимите -  където стихотворенията няма да се виждат, а единствено снимките в по-голям формат.
+                    </p>
+
+                    <p>
+                        <a class="btn btn-success" name="closeMoreInstructions">Затвори</a>
+                    </p>
+
+                </div>
+            </div>
+        </div>
+
+        <!--<div class="row">-->
+            <!--<div class="col-lg">-->
+                <!--<div class="moreInstructions">-->
+                    <!--<p>-->
+                        <!--<span class="question">- Как да си добавите музика ?</span>-->
+                    <!--</p>-->
+
+                    <!--<p>-->
+                        <!--Добавянето на музика става по абсолютно същият начин както добавянето на снимка, като <span class="important">единствената разлика е, че песента трябва да се добави в папка music и да бъде в mp3 формат</span>-->
+                    <!--</p>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+    </div>
+</body>
+
+</html>
