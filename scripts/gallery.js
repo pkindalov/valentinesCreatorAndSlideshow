@@ -1,52 +1,49 @@
 $(document).ready(function() {
 
 
-    // let folder ='../giftGallery/pictures';
-    // let pics = [];
+    function showHideElementsOnStart() {
+        $('.container').hide();
+        $('.container').delay(1000).fadeIn(5000);
+        $('.instructions').hide();
+        $('.moreInstructions').hide();
+    }
+
+    function showStats() {
+        $('.stats').append("Общ брой снимки -> " + pictures.length + "<br />");
+        $('.stats').append("Общ брой стихове -> " + poems.length);
+    }
 
 
-    // $.ajax({
-    //     url: folder,
-    //     success: function(data){
-    //         console.log(data);
-    //     }
-    // });
+    function fillArrayImages() {
+        for (let pic of pictures) {
+            let img = $(`<img class="pic" src="${pic}" alt="${pic}" />`);
+            images.push(img);
+        }
+    }
 
-
-
-
-
-
-
-    $('.container').hide();
-    $('.container').delay(1000).fadeIn(5000);
-    $('.instructions').hide();
-    $('.moreInstructions').hide();
-
-
-    let pictures = getPics();
-    let poems = getPoems();
-    let images = [];
-
-    $('.stats').append("Общ брой снимки -> " + pictures.length + "<br />");
-    $('.stats').append("Общ брой стихове -> " + poems.length);
-
-    for (let pic of pictures) {
-        let img = $(`<img class="pic" src="${pic}" alt="${pic}" />`);
-        images.push(img);
+    function generateRndNumber(length) {
+        return Math.floor(Math.random() * length);
     }
 
 
 
+    showHideElementsOnStart();
 
-    // [
-    //     '<img src="pictures/1.jpg" />',
-    //     '<img src="pictures/2.jpg" />'
-    // ]
+    let pictures = getPics();
+    let poems = getPoems();
 
 
-    let randomNumber = Math.floor(Math.random() * images.length);
-    let randomPoem = Math.floor(Math.random() * poems.length);
+    let images = [];
+
+    showStats();
+    fillArrayImages();
+
+
+
+
+
+    let randomNumber = generateRndNumber(images.length);
+    let randomPoem =  generateRndNumber(poems.length);
 
 
     $('span[name="count"]').text(randomNumber);
