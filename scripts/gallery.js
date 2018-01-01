@@ -319,6 +319,46 @@ $(document).ready(function() {
 
 
 
+    function checkIfAutoplOnOrOff() {
+        if (isAutoplayOrderdTurnOn) {
+            clearInterval(autoplayOrdered);
+            $('a[name="autoplayOrdered"]').text("Авт.сменяне на снимките(Случаен) - ВКЛЮЧИ.");
+            $('a[name="autoplayOrdered"]').removeClass("btn btn-outline-warning");
+            $('a[name="autoplayOrdered"]').addClass("btn btn-warning");
+        }
+
+        if (isAutoplayTurnOn) {
+            clearInterval(autoplay);
+            $('a[name="autoplay"]').text("Авт.сменяне на снимките(Случаен) - ВКЛЮЧИ.");
+            $('a[name="autoplay"]').removeClass("btn btn-outline-warning");
+            $('a[name="autoplay"]').addClass("btn btn-warning");
+            isAutoplayTurnOn = false;
+        } else {
+
+            $('a[name="autoplay"]').text("Авт.сменяне на снимките(Случаен) - ИЗКЛЮЧИ.");
+            $('a[name="autoplay"]').removeClass("btn btn-warning");
+            $('a[name="autoplay"]').addClass("btn btn-outline-warning");
+
+
+            autoplay = setInterval(function () {
+
+                hideElementsInAutoplayMode();
+
+                randomNumber = generateRndNumber(images.length);
+                randomPoem = generateRndNumber(poems.length);
+
+                writeOnCounterEl(randomNumber);
+                writeImageAndPoem();
+
+
+            }, 30000);
+
+            isAutoplayTurnOn = true;
+        }
+    }
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -365,63 +405,13 @@ $(document).ready(function() {
 
     //logic about autoplay with random selected pictures
     $('a[name="autoplay"]').click(function () {
-
-        if(isAutoplayOrderdTurnOn){
-            clearInterval(autoplayOrdered);
-            $('a[name="autoplayOrdered"]').text("Авт.сменяне на снимките(Случаен) - ВКЛЮЧИ.");
-            $('a[name="autoplayOrdered"]').removeClass("btn btn-outline-warning");
-            $('a[name="autoplayOrdered"]').addClass("btn btn-warning");
-        }
-
-        if(isAutoplayTurnOn){
-            clearInterval(autoplay);
-            $('a[name="autoplay"]').text("Авт.сменяне на снимките(Случаен) - ВКЛЮЧИ.");
-            $('a[name="autoplay"]').removeClass("btn btn-outline-warning");
-            $('a[name="autoplay"]').addClass("btn btn-warning");
-            isAutoplayTurnOn = false;
-        } else{
-
-            $('a[name="autoplay"]').text("Авт.сменяне на снимките(Случаен) - ИЗКЛЮЧИ.");
-            $('a[name="autoplay"]').removeClass("btn btn-warning");
-            $('a[name="autoplay"]').addClass("btn btn-outline-warning");
-
-
-            autoplay = setInterval(function() {
-                $('.poemPlace').hide();
-                $('.imageBorder').hide();
-
-                randomNumber = Math.floor(Math.random() * images.length);
-                randomPoem = Math.floor(Math.random() * poems.length);
-
-                $('span[name="count"]').text(randomNumber);
-                let randomStartingPic = images[randomNumber];
-                let randomStartingPoem = poems[randomPoem];
-
-                $('.imageBorder').html(randomStartingPic).fadeIn(5000);
-                // $('.poemPlace').text(randomStartingPoem).fadeIn(5000);
-                if(poemsTurnOn){
-                    $('.poemPlace').text(randomStartingPoem).fadeIn(5000);
-                }else {
-                    $('.poemPlace').text("").fadeIn(2000);
-                }
-
-            }, 30000);
-
-            isAutoplayTurnOn = true;
-        }
+        checkIfAutoplOnOrOff();
     });
 
 
 
 
-
-
-
-
-
-
-
-
+    
     //logic about autoplay pictures ordered
     $('a[name="autoplayOrdered"]').click(function () {
 
