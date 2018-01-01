@@ -26,74 +26,77 @@ $(document).ready(function() {
     }
 
 
-
-    showHideElementsOnStart();
-
-    let pictures = getPics();
-    let poems = getPoems();
-
-
-    let images = [];
-
-    showStats();
-    fillArrayImages();
-
-
-
-
-
-    let randomNumber = generateRndNumber(images.length);
-    let randomPoem =  generateRndNumber(poems.length);
-
-
-    $('span[name="count"]').text(randomNumber);
-    let randomStartingPic = images[randomNumber];
-    let randomStartingPoem = poems[randomPoem];
-
-
-    $('.imageBorder').html(randomStartingPic);
-
-
-    $('.poemPlace').text(randomStartingPoem);
-
-    let isAutoplayTurnOn = true;
-    let isAutoplayOrderdTurnOn = false;
-    let autoplayOrdered = '';
-    let poemsTurnOn = true;
-    let bigImages = false;
-    let instructionsTurnOn = false;
-    let moreInstructionsTurnOn = false;
-    let heartThemes = 8;
-    let randomHeartTheme = 0;
-    let backgThemes = 10;
-    let randomBackgrTheme = 0;
-
-
-    let autoplay = setInterval(function() {
-        $('.poemPlace').hide();
-        $('.imageBorder').hide();
-
-        randomNumber = Math.floor(Math.random() * images.length);
-        randomPoem = Math.floor(Math.random() * poems.length);
+    function initialSettings() {
+        let randomNumber = generateRndNumber(images.length);
+        let randomPoem = generateRndNumber(poems.length);
 
         $('span[name="count"]').text(randomNumber);
+
+
         let randomStartingPic = images[randomNumber];
         let randomStartingPoem = poems[randomPoem];
 
-        $('.imageBorder').html(randomStartingPic).fadeIn(5000);
 
-        if(poemsTurnOn){
-            $('.poemPlace').text(randomStartingPoem).fadeIn(5000);
-        }else {
+        $('.imageBorder').html(randomStartingPic);
+
+
+        $('.poemPlace').text(randomStartingPoem);
+
+        let isAutoplayTurnOn = true;
+        let isAutoplayOrderdTurnOn = false;
+        let autoplayOrdered = '';
+        let poemsTurnOn = true;
+        let bigImages = false;
+        let instructionsTurnOn = false;
+        let moreInstructionsTurnOn = false;
+        let heartThemes = 8;
+        let randomHeartTheme = 0;
+        let backgThemes = 10;
+        let randomBackgrTheme = 0;
+        return {
+            randomNumber,
+            randomPoem,
+            isAutoplayTurnOn,
+            isAutoplayOrderdTurnOn,
+            autoplayOrdered,
+            poemsTurnOn,
+            bigImages,
+            instructionsTurnOn,
+            moreInstructionsTurnOn,
+            heartThemes,
+            randomHeartTheme,
+            backgThemes,
+            randomBackgrTheme
+        };
+    }
+
+
+
+    function hideElementsInAutoplayMode() {
+        $('.poemPlace').hide();
+        $('.imageBorder').hide();
+    }
+
+
+    function writeOnCounterEl(number) {
+        $('span[name="count"]').text(number);
+    }
+
+
+    function writeImageAndPoem() {
+        $('.imageBorder').html(images[randomNumber]).fadeIn(5000);
+
+        if (poemsTurnOn) {
+            $('.poemPlace').text(poems[randomPoem]).fadeIn(5000);
+        } else {
             $('.poemPlace').text("").fadeIn(2000);
         }
+    }
 
 
-        //choose heart background
-        randomBackgrTheme = Math.floor(Math.random() * backgThemes);
 
-
-        switch (randomBackgrTheme){
+    function changeBackgroundTheme() {
+        switch (randomBackgrTheme) {
             case 0:
                 $('body div:first').removeClass('mainBackground2').addClass('main');
                 $('body div:first').removeClass('mainBackground3').addClass('main');
@@ -205,14 +208,11 @@ $(document).ready(function() {
                 $('body div:first').removeClass('mainBackground9').addClass('mainBackground10');
                 break;
         }
+    }
 
 
-
-        //choose heart theme
-        randomHeartTheme = Math.floor(Math.random() * heartThemes);
-
-
-        switch (randomHeartTheme){
+    function changeHeartTheme() {
+        switch (randomHeartTheme) {
             case 0:
                 $('.col-lg div:first').removeClass('heart2').addClass('heart');
                 $('.col-lg div:first').removeClass('heart3').addClass('heart');
@@ -314,13 +314,51 @@ $(document).ready(function() {
                 break;
 
 
-
         }
+    }
 
 
-        // if(randomHeartTheme = 2){
-        //     $('.heart').removeClass('heart').addClass('heart2');
-        // }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    showHideElementsOnStart();
+
+    let pictures = getPics();
+    let poems = getPoems();
+
+
+    let images = [];
+
+    showStats();
+    fillArrayImages();
+
+
+
+    let {randomNumber, randomPoem, isAutoplayTurnOn, isAutoplayOrderdTurnOn, autoplayOrdered, poemsTurnOn, bigImages, instructionsTurnOn, moreInstructionsTurnOn, heartThemes, randomHeartTheme, backgThemes, randomBackgrTheme} = initialSettings();
+
+
+
+
+    let autoplay = setInterval(function() {
+
+        hideElementsInAutoplayMode();
+
+        randomNumber = generateRndNumber(images.length);
+        randomPoem = generateRndNumber(poems.length);
+
+        writeOnCounterEl(randomNumber);
+        writeImageAndPoem();
+
+        //choose heart background
+        randomBackgrTheme = generateRndNumber(backgThemes);
+        changeBackgroundTheme();
+
+        //choose heart theme
+        randomHeartTheme = generateRndNumber(heartThemes);
+        changeHeartTheme();
+
+
 
     }, 30000);
 
