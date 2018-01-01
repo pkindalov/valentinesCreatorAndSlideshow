@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c04e2e65-c314-4dac-8f45-6b5a34b3aae1" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/scripts/gallery.js" afterPath="$PROJECT_DIR$/scripts/gallery.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -19,8 +20,8 @@
       <file leaf-file-name="gallery.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/scripts/gallery.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="61">
-              <caret line="664" column="7" lean-forward="true" selection-start-line="664" selection-start-column="7" selection-end-line="664" selection-end-column="7" />
+            <state relative-caret-position="744">
+              <caret line="705" column="0" lean-forward="true" selection-start-line="705" selection-start-column="0" selection-end-line="705" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -76,6 +77,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -92,8 +95,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -138,14 +139,16 @@
       <workItem from="1514806413075" duration="5404000" />
       <workItem from="1514813943650" duration="224000" />
       <workItem from="1514814257087" duration="3133000" />
+      <workItem from="1514839273056" duration="1858000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30413000" />
+    <option name="totallyTimeSpent" value="32271000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1456" height="876" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2496474" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -178,6 +181,14 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/scripts/gallery.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/gallery.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -276,8 +287,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/scripts/gallery.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="61">
-          <caret line="664" column="7" lean-forward="true" selection-start-line="664" selection-start-column="7" selection-end-line="664" selection-end-column="7" />
+        <state relative-caret-position="744">
+          <caret line="705" column="0" lean-forward="true" selection-start-line="705" selection-start-column="0" selection-end-line="705" selection-end-column="0" />
           <folding />
         </state>
       </provider>

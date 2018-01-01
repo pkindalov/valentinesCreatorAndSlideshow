@@ -539,6 +539,30 @@ $(document).ready(function() {
     }
 
 
+    function moreInstructionsTurnOnOrOff() {
+        moreInstructionsTurnOn = !moreInstructionsTurnOn;
+
+        if (moreInstructionsTurnOn) {
+            $('a[name="moreInstructions"]').removeClass('btn btn-success');
+            $('a[name="moreInstructions"]').addClass('btn btn-outline-success');
+            $('a[name="moreInstructions"]').text("Скрий инструкциите");
+
+
+            $('.row div:first').before($('.moreInstructions'));
+            $('.moreInstructions').fadeIn(2000);
+            moreInstructionsTurnOn = true;
+        } else {
+            $('a[name="moreInstructions"]').removeClass('btn btn-outline-success');
+            $('a[name="moreInstructions"]').addClass('btn btn-success');
+            $('a[name="moreInstructions"]').text("Тук");
+
+
+            $('.moreInstructions').hide();
+            moreInstructionsTurnOn = false;
+        }
+    }
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -650,12 +674,10 @@ $(document).ready(function() {
 
 
 
-
     //logic about turn on/off bigger images
     $('a[name="bigImage"]').click(function () {
         zoomedPicsTurnOnOrOff();
     });
-
 
 
 
@@ -668,27 +690,7 @@ $(document).ready(function() {
 
     //logic for more instructions
     $('a[name="moreInstructions"]').click(function () {
-        moreInstructionsTurnOn = !moreInstructionsTurnOn;
-
-        if(moreInstructionsTurnOn){
-            $('a[name="moreInstructions"]').removeClass('btn btn-success');
-            $('a[name="moreInstructions"]').addClass('btn btn-outline-success');
-            $('a[name="moreInstructions"]').text("Скрий инструкциите");
-
-
-            $('.row div:first').before($('.moreInstructions'));
-            $('.moreInstructions').fadeIn(2000);
-            moreInstructionsTurnOn = true;
-        }else {
-            $('a[name="moreInstructions"]').removeClass('btn btn-outline-success');
-            $('a[name="moreInstructions"]').addClass('btn btn-success');
-            $('a[name="moreInstructions"]').text("Тук");
-
-
-            $('.moreInstructions').hide();
-            moreInstructionsTurnOn = false;
-        }
-
+        moreInstructionsTurnOnOrOff();
     });
 
 
@@ -701,20 +703,3 @@ $(document).ready(function() {
 
 });
 
-
-
-
-
-
-// function showNextPicture(randomNumber, images) {
-
-//     if (randomNumber >= images.length) {
-//         randomNumber = 0;
-//         $('.imageBorder').html(images[randomNumber]);
-//         $('span[name="count"]').text(randomNumber);
-//     } else {
-//         randomNumber++;
-//         $('.imageBorder').html(images[randomNumber]);
-//         $('span[name="count"]').text(randomNumber);
-//     }
-// }
