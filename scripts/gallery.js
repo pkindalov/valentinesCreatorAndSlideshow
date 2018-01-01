@@ -443,6 +443,103 @@ $(document).ready(function() {
     }
 
 
+    function poemsTurnOnOrOff() {
+        if (poemsTurnOn) {
+            poemsTurnOn = false;
+            $('a[name="stopPoems"]').removeClass('btn btn-outline-warning');
+            $('a[name="stopPoems"]').addClass('btn btn-warning');
+            $('a[name="stopPoems"]').text('Покажи стихчетата');
+            $('.poemPlace').text("");
+        } else {
+            poemsTurnOn = true;
+            $('a[name="stopPoems"]').removeClass('btn btn-warning');
+            $('a[name="stopPoems"]').addClass('btn btn-outline-warning');
+            $('a[name="stopPoems"]').text('Непоказвай стихчетата');
+            $('.poemPlace').text(poems[randomPoem]).fadeIn(2000);
+        }
+    }
+
+
+    function createMusicBoxAndLoadSongsThere() {
+        $('.musicControls').append('<audio class="musicPlayer" controls>');
+
+        for (let song of songs) {
+            $('.musicPlayer').append(`<source src="${song}" type="audio/mpeg">`);
+        }
+    }
+
+
+    function zoomOnOrOff() {
+        isZoomed = !isZoomed;
+
+        if (isZoomed) {
+            $(this).addClass('img-zoom');
+        } else {
+            $(this).removeClass('img-zoom');
+        }
+    }
+
+
+
+    function zoomedPicsTurnOnOrOff() {
+        bigImages = !bigImages;
+
+        if (bigImages) {
+            images = [];
+
+            for (let picture of pictures) {
+                let img = $(`<img class="img-zoom" src="${picture}" alt="${picture}" />`);
+                images.push(img);
+            }
+            ;
+
+            $('a[name="bigImage"]').removeClass('btn btn-outline-warning');
+            $('a[name="bigImage"]').addClass('btn btn-warning');
+            $('a[name="bigImage"]').text('Намали снимките');
+        } else {
+
+            images = [];
+
+            for (let picture of pictures) {
+                let img = $(`<img class="pic" src="${picture}" alt="${picture}" />`);
+                images.push(img);
+            }
+            ;
+
+            $('a[name="bigImage"]').removeClass('btn btn-warning');
+            $('a[name="bigImage"]').addClass('btn btn-outline-warning');
+            $('a[name="bigImage"]').text('Уголеми снимките');
+
+
+        }
+    }
+
+
+    function showInstructionsTurnOnOrOff() {
+        instructionsTurnOn = !instructionsTurnOn;
+
+        if (instructionsTurnOn) {
+            $('a[name="showInstructions"]').removeClass('btn btn-warning');
+            $('a[name="showInstructions"]').addClass('btn btn-outline-warning');
+            $('a[name="showInstructions"]').text("Скрий инструкциите");
+
+
+            $('.instructions').fadeIn(2000);
+            instructionsTurnOn = true;
+        } else {
+            $('a[name="showInstructions"]').removeClass('btn btn-outline-warning');
+            $('a[name="showInstructions"]').addClass('btn btn-warning');
+            $('a[name="showInstructions"]').text("Покажи инструкции");
+
+
+            $('.instructions').hide();
+            $('.moreInstructions').hide();
+            instructionsTurnOn = false;
+        }
+    }
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -531,51 +628,24 @@ $(document).ready(function() {
 
     //logic for turn on/off poems(just hide element)
     $('a[name="stopPoems"]').click(function () {
-        if(poemsTurnOn){
-            poemsTurnOn = false;
-            $('a[name="stopPoems"]').removeClass('btn btn-outline-warning');
-            $('a[name="stopPoems"]').addClass('btn btn-warning');
-            $('a[name="stopPoems"]').text('Покажи стихчетата');
-            $('.poemPlace').text("");
-        }else {
-            poemsTurnOn = true;
-            $('a[name="stopPoems"]').removeClass('btn btn-warning');
-            $('a[name="stopPoems"]').addClass('btn btn-outline-warning');
-            $('a[name="stopPoems"]').text('Непоказвай стихчетата');
-            $('.poemPlace').text(poems[randomPoem]).fadeIn(2000);
-        }
+        poemsTurnOnOrOff();
     });
 
 
 
     //logic for music
+    //load music names in array
     let songs = getMusic();
-
-    $('.musicControls').append('<audio class="musicPlayer" controls>');
-
-    for(let song of songs){
-        $('.musicPlayer').append(`<source src="${song}" type="audio/mpeg">`);
-    }
+    createMusicBoxAndLoadSongsThere();
 
 
 
     //logic about zoom of pictures when click on image
     let isZoomed = false;
+
     $('.imageBorder').on("click","img", function (e) {
         e.preventDefault();
-        isZoomed = !isZoomed;
-
-        if(isZoomed){
-            let pic = $(this).addClass('img-zoom');
-        }else {
-            $(this).removeClass('img-zoom');
-        }
-
-        // $('body').append('<div class="shadow">').css('background-color', 'black', 'opacity', '0.5', 'height', '2000px', 'width', '2000px', 'margin', '0 auto', 'text-align', 'center');
-        // $('.shadow').html('<div class="modal">').css('background-color', 'white', 'height', '700px', 'width', '700px', 'position', 'absolute', 'margin', '0 auto');
-        // let picture = $('.pic');
-        // $('.modal').append(picture);
-        // $('.shadow').prepend('<div class="modal">').css('background-color', 'white', 'height', '600px', 'width', '600px', 'margin', '0 auto', 'position', 'absolute', 'margin-top', '400px');
+        zoomOnOrOff.call(this);
     });
 
 
@@ -583,36 +653,7 @@ $(document).ready(function() {
 
     //logic about turn on/off bigger images
     $('a[name="bigImage"]').click(function () {
-       bigImages = !bigImages;
-
-       if(bigImages){
-           images = [];
-
-           for(let picture of pictures){
-               let img = $(`<img class="img-zoom" src="${picture}" alt="${picture}" />`);
-               images.push(img);
-           };
-
-           $('a[name="bigImage"]').removeClass('btn btn-outline-warning');
-           $('a[name="bigImage"]').addClass('btn btn-warning');
-           $('a[name="bigImage"]').text('Намали снимките');
-       }else {
-
-           images = [];
-
-           for(let picture of pictures){
-               let img = $(`<img class="pic" src="${picture}" alt="${picture}" />`);
-               images.push(img);
-           };
-
-           $('a[name="bigImage"]').removeClass('btn btn-warning');
-           $('a[name="bigImage"]').addClass('btn btn-outline-warning');
-           $('a[name="bigImage"]').text('Уголеми снимките');
-
-
-       }
-
-
+        zoomedPicsTurnOnOrOff();
     });
 
 
@@ -620,27 +661,7 @@ $(document).ready(function() {
 
     //logic for instructions
     $('a[name="showInstructions"]').click(function () {
-        instructionsTurnOn = !instructionsTurnOn;
-
-        if(instructionsTurnOn){
-            $('a[name="showInstructions"]').removeClass('btn btn-warning');
-            $('a[name="showInstructions"]').addClass('btn btn-outline-warning');
-            $('a[name="showInstructions"]').text("Скрий инструкциите");
-
-
-            $('.instructions').fadeIn(2000);
-            instructionsTurnOn = true;
-        }else {
-            $('a[name="showInstructions"]').removeClass('btn btn-outline-warning');
-            $('a[name="showInstructions"]').addClass('btn btn-warning');
-            $('a[name="showInstructions"]').text("Покажи инструкции");
-
-
-            $('.instructions').hide();
-            $('.moreInstructions').hide();
-            instructionsTurnOn = false;
-        }
-
+        showInstructionsTurnOnOrOff();
     });
 
 
