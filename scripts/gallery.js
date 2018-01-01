@@ -328,6 +328,16 @@ $(document).ready(function() {
     }
 
 
+    function stopAutoplayRandomOrdered() {
+        if (isAutoplayTurnOn) {
+            clearInterval(autoplay);
+            $('a[name="autoplay"]').text("Авт.сменяне на снимките(Случаен) - ВКЛЮЧИ..");
+            $('a[name="autoplay"]').removeClass("btn btn-outline-warning");
+            $('a[name="autoplay"]').addClass("btn btn-warning");
+        }
+    }
+
+
 
     function checkIfAutoplOnOrOff() {
 
@@ -362,8 +372,36 @@ $(document).ready(function() {
     }
 
 
+    function checkIfAutoplOrderedOnOrOff() {
+        if (isAutoplayOrderdTurnOn) {
+            clearInterval(autoplayOrdered);
+            $('a[name="autoplayOrdered"]').text("Авт.сменяне на снимките(Подредба) - ВКЛЮЧИ.");
+            $('a[name="autoplayOrdered"]').removeClass("btn btn-outline-warning");
+            $('a[name="autoplayOrdered"]').addClass("btn btn-warning");
+            isAutoplayOrderdTurnOn = false;
+        } else {
 
-    function chooseImageAndPoem() {
+            $('a[name="autoplayOrdered"]').text("Авт.сменяне на снимките(Подредба) - ИЗКЛЮЧИ.");
+            $('a[name="autoplayOrdered"]').removeClass("btn btn-warning");
+            $('a[name="autoplayOrdered"]').addClass("btn btn-outline-warning");
+
+
+            autoplayOrdered = setInterval(function () {
+
+                hideElementsInAutoplayMode();
+                chooseImageAndPoemNextButton();
+                writeImageAndPoem();
+
+
+            }, 30000);
+
+            isAutoplayOrderdTurnOn = true;
+        }
+    }
+
+
+
+    function chooseImageAndPoemNextButton() {
         if (randomNumber >= images.length) {
             randomNumber = 0;
 
@@ -384,6 +422,25 @@ $(document).ready(function() {
         }
     }
 
+
+    function chooseImageAndPoemPrevButton() {
+        if (randomNumber <= 0) {
+            randomNumber = images.length;
+            writeOnCounterEl(randomNumber);
+        } else {
+            randomNumber--;
+            writeOnCounterEl(randomNumber);
+        }
+        //logic for poems
+
+
+        if (randomPoem <= 0) {
+            randomPoem = poems.length;
+            // $('.poemPlace').text(poems[randomPoem]);
+        } else {
+            randomPoem--;
+        }
+    }
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -437,140 +494,38 @@ $(document).ready(function() {
     });
 
 
-
-
-    
     //logic about autoplay pictures ordered
     $('a[name="autoplayOrdered"]').click(function () {
-
-        if(isAutoplayTurnOn){
-            clearInterval(autoplay);
-            $('a[name="autoplay"]').text("Авт.сменяне на снимките(Случаен) - ВКЛЮЧИ..");
-            $('a[name="autoplay"]').removeClass("btn btn-outline-warning");
-            $('a[name="autoplay"]').addClass("btn btn-warning");
-        }
-
-        if(isAutoplayOrderdTurnOn){
-            clearInterval(autoplayOrdered);
-            $('a[name="autoplayOrdered"]').text("Авт.сменяне на снимките(Подредба) - ВКЛЮЧИ.");
-            $('a[name="autoplayOrdered"]').removeClass("btn btn-outline-warning");
-            $('a[name="autoplayOrdered"]').addClass("btn btn-warning");
-            isAutoplayOrderdTurnOn = false;
-        } else{
-
-            $('a[name="autoplayOrdered"]').text("Авт.сменяне на снимките(Подредба) - ИЗКЛЮЧИ.");
-            $('a[name="autoplayOrdered"]').removeClass("btn btn-warning");
-            $('a[name="autoplayOrdered"]').addClass("btn btn-outline-warning");
-
-
-            autoplayOrdered = setInterval(function() {
-
-                hideElementsInAutoplayMode();
-                chooseImageAndPoem();
-                writeImageAndPoem();
-
-
-            }, 30000);
-
-            isAutoplayOrderdTurnOn = true;
-        }
+        stopAutoplayRandomOrdered();
+        checkIfAutoplOrderedOnOrOff();
     });
-
-
 
 
     //logic for next button
     $('a[name="next"]').click(function() {
-        // showNextPicture(randomNumber, images);
-        $('.poemPlace').hide();
-        $('.imageBorder').hide();
-
-        if (randomNumber >= images.length) {
-            randomNumber = 0;
-
-            $('span[name="count"]').text(randomNumber);
-        } else {
-            randomNumber++;
-            $('span[name="count"]').text(randomNumber);
-        }
-
-        //logic for poems to show them in order from array
-
-        if (randomPoem >= poems.length) {
-            randomPoem = 0;
-        } else {
-            randomPoem++;
-        }
-
-
-        $('.imageBorder').html(images[randomNumber]).fadeIn(2000);
-        // $('.poemPlace').text(poems[randomPoem]).fadeIn(2000);
-        if(poemsTurnOn){
-            $('.poemPlace').text(poems[randomPoem]).fadeIn(5000);
-        }else {
-            $('.poemPlace').text("").fadeIn(2000);
-        }
-
-
-
+        hideElementsInAutoplayMode();
+        chooseImageAndPoemNextButton();
+        writeImageAndPoem();
     });
 
 
-
+    //logic for prev button
     $('a[name="prev"]').click(function() {
-
-        $('.poemPlace').hide();
-        $('.imageBorder').hide();
-
-        if (randomNumber <= 0) {
-            randomNumber = images.length;
-            $('span[name="count"]').text(randomNumber);
-        } else {
-            randomNumber--;
-            // $('.imageBorder').html(images[randomNumber]);
-            $('span[name="count"]').text(randomNumber);
-        }
-        //logic for poems
-
-
-        if (randomPoem <= 0) {
-            randomPoem = poems.length;
-            // $('.poemPlace').text(poems[randomPoem]);
-        } else {
-            randomPoem--;
-        }
-
-        $('.imageBorder').html(images[randomNumber]).fadeIn(2000);
-        // $('.poemPlace').text(poems[randomPoem]).fadeIn(2000);
-        if(poemsTurnOn){
-            $('.poemPlace').text(poems[randomPoem]).fadeIn(5000);
-        }else {
-            $('.poemPlace').text("").fadeIn(2000);
-        }
-
-
+       hideElementsInAutoplayMode();
+       chooseImageAndPoemPrevButton();
+       writeImageAndPoem();
     });
 
 
 
     //logic for random button
     $('a[name="random"]').click(function() {
-        $('.poemPlace').hide();
-        $('.imageBorder').hide();
-
-        randomNumber = Math.floor(Math.random() * images.length);
-        randomPoem = Math.floor(Math.random() * poems.length);
-
-        $('span[name="count"]').text(randomNumber);
-        $('.imageBorder').html(images[randomNumber]).fadeIn(2000);
-        // $('.poemPlace').text(poems[randomPoem]).fadeIn(2000);
-        if(poemsTurnOn){
-            $('.poemPlace').text(poems[randomPoem]).fadeIn(5000);
-        }else {
-            $('.poemPlace').text("").fadeIn(2000);
-        }
-
-    });
+       hideElementsInAutoplayMode();
+       randomNumber = generateRndNumber(images.length);
+       randomPoem = generateRndNumber(poems.length);
+       writeOnCounterEl(randomNumber);
+       writeImageAndPoem();
+       });
 
 
 
