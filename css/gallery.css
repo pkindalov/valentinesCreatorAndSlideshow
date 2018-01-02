@@ -255,7 +255,7 @@ div.settings div.autoplaySettings{
 
 .right{
     margin-left: 395px;
-    margin-top: -172px;
+    margin-top: -408px;
     width: 380px;
     text-align: right;
 }
@@ -265,9 +265,18 @@ div.settings div.autoplaySettings{
     border-radius: 5px;
     background: orange;
     margin-left: 380px;
-    margin-top: -170px;
+    margin-top: -430px;
     padding-left: 3px;
     padding-right: 3px;
     width: 3px;
-    height: 280px;
+    height: 480px;
+}
+
+.line-separator{
+    border: 1px solid orange;
+    width: 90%;
+}
+
+.windowButtons{
+    margin-top: 140px;
 }
