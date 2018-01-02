@@ -6,6 +6,7 @@ $(document).ready(function() {
         $('.container').delay(1000).fadeIn(5000);
         $('.instructions').hide();
         $('.moreInstructions').hide();
+        $('.settings').hide();
     }
 
     function showStats() {
@@ -49,6 +50,7 @@ $(document).ready(function() {
         let bigImages = false;
         let instructionsTurnOn = false;
         let moreInstructionsTurnOn = false;
+        let openSettingsWindow = false;
         let heartThemes = 8;
         let randomHeartTheme = 0;
         let backgThemes = 10;
@@ -63,6 +65,7 @@ $(document).ready(function() {
             bigImages,
             instructionsTurnOn,
             moreInstructionsTurnOn,
+            openSettingsWindow,
             heartThemes,
             randomHeartTheme,
             backgThemes,
@@ -580,7 +583,7 @@ $(document).ready(function() {
 
 
 
-    let {randomNumber, randomPoem, isAutoplayTurnOn, isAutoplayOrderdTurnOn, autoplayOrdered, poemsTurnOn, bigImages, instructionsTurnOn, moreInstructionsTurnOn, heartThemes, randomHeartTheme, backgThemes, randomBackgrTheme} = initialSettings();
+    let {randomNumber, randomPoem, isAutoplayTurnOn, isAutoplayOrderdTurnOn, autoplayOrdered, poemsTurnOn, bigImages, instructionsTurnOn, moreInstructionsTurnOn, openSettingsWindow, heartThemes, randomHeartTheme, backgThemes, randomBackgrTheme} = initialSettings();
 
 
 
@@ -698,7 +701,38 @@ $(document).ready(function() {
     $('a[name="closeMoreInstructions"]').click(function (e) {
         e.preventDefault();
         $(this).parent().parent('div').hide();
+    });
+
+
+    //open settings window
+    $('a[name="openSettingsWindow"]').click(function () {
+       openSettingsWindow = !openSettingsWindow;
+
+       if(openSettingsWindow){
+           $('.settings').fadeIn(2000);
+           $('a[name="openSettingsWindow"]').removeClass('btn btn-warning')
+               .addClass('btn btn-outline-warning')
+               .html("Скрий настройките");
+           // openSettingsWindow = true;
+       }else {
+           $('.settings').fadeOut("fast");
+           $('a[name="openSettingsWindow"]').removeClass('btn btn-outline-warning')
+               .addClass('btn btn-warning')
+               .html("Настройки");
+           // openSettingsWindow = true;
+       }
+
+    });
+
+    //close settings window
+    $('a[name="closeHelpWindow"]').click(function () {
+       $(this).parent('div').parent('div').parent('div').fadeOut("fast");
+
+        $('a[name="openSettingsWindow"]').removeClass('btn btn-outline-warning')
+            .addClass('btn btn-warning')
+            .html("Настройки");
     })
+
 
 
 });
