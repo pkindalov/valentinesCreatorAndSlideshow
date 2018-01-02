@@ -236,8 +236,9 @@ img {
 
 .settings{
    padding: 10px;
+   margin-top: 120px;
    margin-left: 150px;
-   height: 400px;
+   height: 550px;
    position: absolute;
    width: 802px;
 }
@@ -256,6 +257,7 @@ div.settings div.autoplaySettings{
     margin-left: 395px;
     margin-top: -172px;
     width: 380px;
+    text-align: right;
 }
 
 .vertSeparator{

@@ -324,7 +324,7 @@ $(document).ready(function() {
     function stopAutoplayOrdered() {
         if (isAutoplayOrderdTurnOn) {
             clearInterval(autoplayOrdered);
-            $('a[name="autoplayOrdered"]').text("Авт.сменяне на снимките(Случаен) - ВКЛЮЧИ.");
+            $('a[name="autoplayOrdered"]').text("ВКЛЮЧИ.");
             $('a[name="autoplayOrdered"]').removeClass("btn btn-outline-warning");
             $('a[name="autoplayOrdered"]').addClass("btn btn-warning");
         }
@@ -334,7 +334,7 @@ $(document).ready(function() {
     function stopAutoplayRandomOrdered() {
         if (isAutoplayTurnOn) {
             clearInterval(autoplay);
-            $('a[name="autoplay"]').text("Авт.сменяне на снимките(Случаен) - ВКЛЮЧИ..");
+            $('a[name="autoplay"]').text("ВКЛЮЧИ..");
             $('a[name="autoplay"]').removeClass("btn btn-outline-warning");
             $('a[name="autoplay"]').addClass("btn btn-warning");
         }
@@ -346,13 +346,13 @@ $(document).ready(function() {
 
         if (isAutoplayTurnOn) {
             clearInterval(autoplay);
-            $('a[name="autoplay"]').text("Авт.сменяне на снимките(Случаен) - ВКЛЮЧИ.");
+            $('a[name="autoplay"]').text("ВКЛЮЧИ.");
             $('a[name="autoplay"]').removeClass("btn btn-outline-warning");
             $('a[name="autoplay"]').addClass("btn btn-warning");
             isAutoplayTurnOn = false;
         } else {
 
-            $('a[name="autoplay"]').text("Авт.сменяне на снимките(Случаен) - ИЗКЛЮЧИ.");
+            $('a[name="autoplay"]').text("ИЗКЛЮЧИ.");
             $('a[name="autoplay"]').removeClass("btn btn-warning");
             $('a[name="autoplay"]').addClass("btn btn-outline-warning");
 
@@ -378,13 +378,13 @@ $(document).ready(function() {
     function checkIfAutoplOrderedOnOrOff() {
         if (isAutoplayOrderdTurnOn) {
             clearInterval(autoplayOrdered);
-            $('a[name="autoplayOrdered"]').text("Авт.сменяне на снимките(Подредба) - ВКЛЮЧИ.");
+            $('a[name="autoplayOrdered"]').text("ВКЛЮЧИ.");
             $('a[name="autoplayOrdered"]').removeClass("btn btn-outline-warning");
             $('a[name="autoplayOrdered"]').addClass("btn btn-warning");
             isAutoplayOrderdTurnOn = false;
         } else {
 
-            $('a[name="autoplayOrdered"]').text("Авт.сменяне на снимките(Подредба) - ИЗКЛЮЧИ.");
+            $('a[name="autoplayOrdered"]').text("ИЗКЛЮЧИ.");
             $('a[name="autoplayOrdered"]').removeClass("btn btn-warning");
             $('a[name="autoplayOrdered"]').addClass("btn btn-outline-warning");
 
@@ -567,6 +567,37 @@ $(document).ready(function() {
 
 
 
+    function settingsOpenOrClose() {
+        openSettingsWindow = !openSettingsWindow;
+
+        if (openSettingsWindow) {
+            $('.settings').fadeIn(2000);
+            $('a[name="openSettingsWindow"]').removeClass('btn btn-warning')
+                .addClass('btn btn-outline-warning')
+                .html("Скрий настройките");
+            // openSettingsWindow = true;
+        } else {
+            $('.settings').fadeOut("fast");
+            $('a[name="openSettingsWindow"]').removeClass('btn btn-outline-warning')
+                .addClass('btn btn-warning')
+                .html("Настройки");
+            // openSettingsWindow = true;
+        }
+    }
+
+
+    function closeSettingsWindow() {
+        $(this).parent('div').parent('div').parent('div').fadeOut("fast");
+
+        $('a[name="openSettingsWindow"]').removeClass('btn btn-outline-warning')
+            .addClass('btn btn-warning')
+            .html("Настройки");
+
+        openSettingsWindow = false;
+    }
+
+
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -706,31 +737,12 @@ $(document).ready(function() {
 
     //open settings window
     $('a[name="openSettingsWindow"]').click(function () {
-       openSettingsWindow = !openSettingsWindow;
-
-       if(openSettingsWindow){
-           $('.settings').fadeIn(2000);
-           $('a[name="openSettingsWindow"]').removeClass('btn btn-warning')
-               .addClass('btn btn-outline-warning')
-               .html("Скрий настройките");
-           // openSettingsWindow = true;
-       }else {
-           $('.settings').fadeOut("fast");
-           $('a[name="openSettingsWindow"]').removeClass('btn btn-outline-warning')
-               .addClass('btn btn-warning')
-               .html("Настройки");
-           // openSettingsWindow = true;
-       }
-
+        settingsOpenOrClose();
     });
 
     //close settings window
-    $('a[name="closeHelpWindow"]').click(function () {
-       $(this).parent('div').parent('div').parent('div').fadeOut("fast");
-
-        $('a[name="openSettingsWindow"]').removeClass('btn btn-outline-warning')
-            .addClass('btn btn-warning')
-            .html("Настройки");
+    $('a[name="closeSettingsWindow"]').click(function () {
+        closeSettingsWindow.call(this);
     })
 
 
